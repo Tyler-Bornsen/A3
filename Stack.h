@@ -2,7 +2,7 @@
 #define _STACK_H
 #include <string>
 
-using namespace std;
+typedef std::string SElement;
 
 class Stack
 {
@@ -12,7 +12,7 @@ struct SNode;
 typedef SNode * SNodePtr;
 struct SNode
 {
-    string element;
+    SElement element;
     SNodePtr next;
 };
 SNodePtr top;
@@ -23,14 +23,14 @@ SNodePtr top;
 
 public:
 
-void push(string element);
-void pop();
-void peek( SNodePtr r);
+void push( const SElement &);
+void pop( SElement & );
+void peek( SElement & );
 void view();
 
 Stack();
 ~Stack();
-Stack( Stack & main);
+Stack( Stack & );
 
 };
 

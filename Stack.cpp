@@ -16,20 +16,13 @@ Stack::Stack()
 
 Stack::~Stack()
 {
-    SNodePtr p1;
-    SNodePtr p2;
-
-    p1 = top;
-    while(p1 != NULL)
+    string temp;
+    while(top != NULL)
     {
-        p2 = p1;
-        p1 = p1->next;
-        p2->next = NULL;
-        delete p2;
+        pop(temp);
 
     }
 }
-
 
 
 
@@ -40,7 +33,7 @@ Stack tempStack;
 
 while (main.top != NULL)
 {
-    main.pop();
+    main.pop(temp);
     tempStack.push(temp);
 }
 
@@ -48,7 +41,7 @@ tempStack.view();
 
 while (tempStack.top != NULL)
 {
-    tempStack.pop();
+    tempStack.pop(temp);
     main.push(temp);
     push(temp);
 
@@ -58,20 +51,22 @@ while (tempStack.top != NULL)
 
 
 
-void Stack::push(string element)
+void Stack::push( const SElement &s)
 {
-SNode * n = new SNode;
-n->element = element;
+SNodePtr  n = new SNode;
+
 
 if (top == NULL)
     {
         top = n;
         top->next = NULL;
+        n->element = s;
     }
 else
     {
         n->next = top;
         top = n;
+        n->element = s;
 
     }
 }
@@ -79,7 +74,7 @@ else
 
 
 
-void Stack::pop()
+void Stack::pop( SElement &s)
 {
 
 if (top == NULL)
@@ -91,6 +86,7 @@ else
         SNodePtr p = top;
         top = top->next;
         p->next = NULL;
+        s = p->element;
         delete p;
     }
 
@@ -101,11 +97,11 @@ else
 
 
 
-void Stack::peek( SNodePtr  r)
+void Stack::peek( SElement & s)
 {
-
+SNodePtr r = top;
 cout << r->element;
-
+s = r->element;
 }
 
 
@@ -114,14 +110,17 @@ cout << r->element;
 void Stack::view()
 {
 SNodePtr  p = top;
+SNodePtr tempstack = top;
+string temp;
 
-cout << "TOP -> BOTTOM\n" << "TOP";
+cout << "BOTTOM -> TOP\n" << "BOTTOM";
 
 while(p != NULL)
     {   cout << " -> ";
-        peek(p);
-        p = p->next;
+       cout << p->element;
+         p = p->next;
+
     }
 
-cout << " -> BOTTOM";
+cout << " -> TOP";
 }
