@@ -8,26 +8,8 @@ int main ()
 {
 
 Stack driver;
-string balls;
-
-driver.push("balls");
-driver.push("sussy");
-driver.push("weiner");
+string b;
 
 
-
-
-
-driver.view();
-driver.pop(balls);
-cout << endl;
-cout << balls;
-
-driver.peek(balls);
-
-driver.~Stack();
-
-
-driver.view();
 
 }
